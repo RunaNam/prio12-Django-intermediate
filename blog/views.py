@@ -6,3 +6,9 @@ post_list = ListView.as_view(model=Post)
 
 post_detail = DetailView.as_view(model=Post)
 
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def pos_new(request):
+    pass
