@@ -5,10 +5,12 @@
     <title>Minjeong BLog</title>
 </head>
 <body>
-    <h1>Minjeong blog</h1>
+    <h1>
+        <a href="{% url "root" %}"> blog </a>
+    </h1>
 
     {% if user.is_authenticated %}
-        {{ user }}
+        <a href="{% url "profile" %}">{{ user }} </a>
         로그아웃
     {% else %}
         회원가입
