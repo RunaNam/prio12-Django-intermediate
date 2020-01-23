@@ -12,13 +12,14 @@ from .forms import SignupForm
 def profile(request):
     return render(request, 'accounts/profile.html')
 
-
+#
 # def signup(request):
 #     if request.method == 'POST':
 #         form = SignupForm(request.POST)
 #         if form.is_valid():
 #             user = form.save()
 #             auth_login(request, user)
+#             next_url = request.GET.get('next') or 'profile'
 #             return redirect('profile')
 #     else:
 #         form = SignupForm()
@@ -26,12 +27,14 @@ def profile(request):
 #         'form': form,
 #     })
 
+
 class SignupView(CreateView):
     model = User
     form_class = SignupForm
     template_name = 'accounts/signup.html'
 
     def get_success_url(self):
+        next_url = self.request.GET.get('next') or 'profile'
         return resolve_url('profile')
 
     def form_valid(self, form):
